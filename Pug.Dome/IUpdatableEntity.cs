@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface IUpdatableEntity<INF, I, EVU> : IEntity<INF, I> 
-		where INF : IUpdatableEntityInfo<I, EVU>
+	public interface IUpdatableEntity<tInfo, tIdentifier, tUpdateUser>
+		: IEntity<tInfo, tIdentifier> 
+			where tInfo : IEntityInfo<tIdentifier>, IUpdatableInfo<tUpdateUser>
 	{
 		void Refresh();
 	}

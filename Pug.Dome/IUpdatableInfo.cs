@@ -5,14 +5,18 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface IUpdatableEntityInfo<I, EVU> : IRegisteredEntityInfo<I, EVU>
+	//public interface IUpdatableEntityInfo<I, EVU> : IRegisteredEntityInfo<I, EVU>
+	//{
+	//}
+
+	public interface IUpdatableInfo<tUpdateUser>
 	{
 		DateTime LastUpdateTimestamp
 		{
 			get;
 		}
 
-		EVU LastUpdateUser
+		tUpdateUser LastUpdateUser
 		{
 			get;
 		}

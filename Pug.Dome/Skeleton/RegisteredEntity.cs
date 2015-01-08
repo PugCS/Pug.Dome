@@ -8,11 +8,12 @@ using Pug.Application.Security;
 
 namespace Pug.Dome
 {
-	public abstract class RegisteredEntity<DS, INF, I, EVU> : Entity<DS, INF, I>
-		where DS : IApplicationDataSession
-		where INF : IRegisteredEntityInfo<I, EVU>
+	public abstract class RegisteredEntity<tDataSession, tInfo, tIdentifier, tVersionUser> 
+		: Entity<tDataSession, tInfo, tIdentifier>
+		where tDataSession : IApplicationDataSession
+		where tInfo : IEntityInfo<tIdentifier>, IRegisteredInfo<tVersionUser>
 	{
-		protected RegisteredEntity(INF info, IApplicationData<DS> dataProviderFactory, ISecurityManager securityManager)
+		protected RegisteredEntity(tInfo info, IApplicationData<tDataSession> dataProviderFactory, ISecurityManager securityManager)
 			: base(info, dataProviderFactory, securityManager)
 		{
 		}

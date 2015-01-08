@@ -5,16 +5,7 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface IRegisteredEntityInfo<I, EVU> : IEntityInfo<I>
+	public interface IRegisteredEntityInfo<tIdentifier, tRegistrationUser> : IEntityInfo<tIdentifier>, IRegisteredInfo<tRegistrationUser>
 	{
-		DateTime RegistrationTimestamp
-		{
-			get;
-		}
-
-		EVU RegistrationUser
-		{
-			get;
-		}
 	}
 }

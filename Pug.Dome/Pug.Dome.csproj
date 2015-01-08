@@ -54,23 +54,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity.cs" />
-    <Compile Include="EntityInfo.cs" />
+    <Compile Include="Skeleton\DescribedEntityAttributeInfo.cs" />
+    <Compile Include="Skeleton\Entity.cs" />
+    <Compile Include="Skeleton\EntityAttributeInfo.cs" />
+    <Compile Include="Skeleton\EntityInfo.cs" />
     <Compile Include="Identifiable.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="IEntityAttribute.cs" />
+    <Compile Include="IEntityAttributeInfo.cs" />
     <Compile Include="IEntityInfo.cs" />
-    <Compile Include="IRegisteredEntityInfo.cs" />
+    <Compile Include="IDescribedEntityAttributeInfo.cs" />
+    <Compile Include="INamed.cs" />
+    <Compile Include="INamedEntityInfo.cs" />
+    <Compile Include="IRegisteredInfo.cs" />
     <Compile Include="ITransactionalEntityInfo.cs" />
     <Compile Include="IUpdatableEntity.cs" />
-    <Compile Include="IUpdatableEntityInfo.cs" />
-    <Compile Include="IUpdatableRegisteredEntityInfo.cs" />
+    <Compile Include="IUpdatableInfo.cs" />
+    <Compile Include="Skeleton\NamedEntityInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisteredEntity.cs" />
-    <Compile Include="RegisteredEntityInfo.cs" />
-    <Compile Include="TransactionalEntityInfo.cs" />
-    <Compile Include="UpdatableRegisteredEntity.cs" />
-    <Compile Include="UpdatableRegisteredEntityInfo.cs" />
+    <Compile Include="Skeleton\RegisteredEntity.cs" />
+    <Compile Include="Skeleton\RegisteredEntityInfo.cs" />
+    <Compile Include="Skeleton\TransactionalEntityInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

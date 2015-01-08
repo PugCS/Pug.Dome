@@ -79,13 +79,13 @@ namespace Pug.Dome
 		public abstract void Refresh();
 	}
 
-	public abstract class Entity<DS, INF> : Entity<DS, INF, string>
-		where DS : IApplicationDataSession
-		where INF : IEntityInfo<string>
-	{
-		protected Entity(INF info, IApplicationData<DS> dataProviderFactory, ISecurityManager securityManager)
-			: base(info, dataProviderFactory, securityManager)
-		{
-		}
-	}
+	//public abstract class Entity<DS, INF> : Entity<DS, INF, string>
+	//	where DS : IApplicationDataSession
+	//	where INF : IEntityInfo<string>
+	//{
+	//	protected Entity(INF info, IApplicationData<DS> dataProviderFactory, ISecurityManager securityManager)
+	//		: base(info, dataProviderFactory, securityManager)
+	//	{
+	//	}
+	//}
 }

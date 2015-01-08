@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface ITransactionalEntityInfo<I, EVU> : IRegisteredEntityInfo<I, EVU>
+	public interface ITransactionalEntityInfo<tIdentifier, tRegistrationUser> 
+		: IEntityInfo<tIdentifier>, IRegisteredInfo<tRegistrationUser>
 	{
 		DateTime Timestamp
 		{
@@ -13,8 +14,8 @@ namespace Pug.Dome
 		}
 	}
 
-	public interface ITransactionalEntityInfo : ITransactionalEntityInfo<string, string>
-	{
+	//public interface ITransactionalEntityInfo : ITransactionalEntityInfo<string, string>
+	//{
 
-	}
+	//}
 }
