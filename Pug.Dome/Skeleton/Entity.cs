@@ -7,13 +7,11 @@ using System.Transactions;
 using Pug.Application.Data;
 
 using Pug.Application.Security;
-using Pug.Bizcotty;
-using Pug.Bizcotty.Geography;
 
 namespace Pug.Dome
 {
 	public abstract class Entity<DS, INF, I> : IEntity<INF, I> 
-		where DS : IApplicationDataSession 
+		where DS : class, IApplicationDataSession
 		where INF : IEntityInfo<I>
 	{
 		readonly IApplicationData<DS> dataProviderFactory;

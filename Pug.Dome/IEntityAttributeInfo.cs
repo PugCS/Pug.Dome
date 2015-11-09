@@ -2,22 +2,26 @@
 
 namespace Pug.Dome
 {
-	public interface IEntityAttributeInfo
+    public interface IEntityAttributeInfo<out TEntityVersionUser>
+    {
+        string Name { get; }
+        string Value { get; }
+
+        DateTime SpecificationTimestamp
+        {
+            get;
+        }
+
+        TEntityVersionUser SpecificationUser
+        {
+            get;
+        }
+
+        DateTime LastModificationTimestamp { get; }
+        TEntityVersionUser LastModificationUser { get; }
+    }
+
+    public interface IEntityAttributeInfo : IEntityAttributeInfo<string>
 	{
-		string Name { get; }
-		string Value { get; }
-
-		DateTime SpecificationTimestamp
-		{
-			get;
-		}
-
-		string SpecificationUser
-		{
-			get;
-		}
-
-		DateTime LastModificationTimestamp { get; }
-		string LastModificationUser { get; }
 	}
 }

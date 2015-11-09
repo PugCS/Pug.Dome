@@ -30,20 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Pug.Application">
-      <HintPath>..\..\..\..\Libraries\PugFX\1.0\Debug\Pug.Application.dll</HintPath>
+    <Reference Include="Pug.Application.Data, Version=2.0.5790.33121, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\Debug\Pug.Application.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Pug.Application.Data">
-      <HintPath>..\..\..\..\Libraries\PugFX\1.0\Debug\Pug.Application.Data.dll</HintPath>
+    <Reference Include="Pug.Application.Security, Version=1.0.5790.33122, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\Debug\Pug.Application.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Pug.Application.Security">
-      <HintPath>..\..\..\..\Libraries\PugFX\1.0\Debug\Pug.Application.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Pug.Bizcotty.Common">
-      <HintPath>..\..\..\..\Libraries\Bizcotty\Common\1.0\Debug\Pug.Bizcotty.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Pug.Core">
-      <HintPath>..\..\..\..\Libraries\PugFX\1.0\Debug\Pug.Core.dll</HintPath>
+    <Reference Include="Pug.Core, Version=1.0.5102.42262, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\Debug\Pug.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEntityIdentifierAuthority.cs" />
     <Compile Include="Skeleton\DescribedEntityAttributeInfo.cs" />
     <Compile Include="Skeleton\Entity.cs" />
     <Compile Include="Skeleton\EntityAttributeInfo.cs" />
