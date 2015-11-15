@@ -7,7 +7,6 @@ using System.Threading;
 
 namespace Pug.Dome.Synchronization
 {
-
 	public class EntityMutexLockProvider : IEntityLockProvider, IDisposable
 	{
 		public enum Scope
@@ -20,6 +19,12 @@ namespace Pug.Dome.Synchronization
 		{
 			public Mutex Lock;
 			public DateTime TimeStamp;
+
+			public void Release()
+			{
+				Lock.ReleaseMutex();
+				Lock.Close();
+			}
 		}
 
 		string scopePrefix = @"Local\";
@@ -54,7 +59,9 @@ namespace Pug.Dome.Synchronization
 			{
 				if (this.locks.TryGetValue(identifier, out lockInfo))
 					if (DateTime.Now.Subtract(lockInfo.TimeStamp).TotalSeconds >= 30)
-						lockInfo.Lock.ReleaseMutex();
+					{
+						lockInfo.Release();
+					}
 
 				this.locks.Remove(identifier);
 			}
@@ -98,9 +105,11 @@ namespace Pug.Dome.Synchronization
 
 		public void Release(string identifier)
 		{
-			if (locks.ContainsKey(identifier))
+			LockInfo lockInfo;
+
+			if( locks.TryGetValue(identifier, out lockInfo))
 			{
-				locks[identifier].Lock.ReleaseMutex();
+				lockInfo.Release();
 				locks.Remove(identifier);
 			}
 		}
@@ -122,7 +131,9 @@ namespace Pug.Dome.Synchronization
 			foreach (string identifier in this.locks.Keys)
 			{
 				if (this.locks.TryGetValue(identifier, out lockInfo))
-					lockInfo.Lock.ReleaseMutex();
+				{
+					lockInfo.Release();
+				}
 			}
 		}
 	}
