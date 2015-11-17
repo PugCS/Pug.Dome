@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\Debug\Pug.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Snowflake">
+      <HintPath>..\..\Dependencies\Debug\Snowflake.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
@@ -72,6 +75,9 @@
     <Compile Include="Skeleton\RegisteredEntity.cs" />
     <Compile Include="Skeleton\RegisteredEntityInfo.cs" />
     <Compile Include="Skeleton\TransactionalEntityInfo.cs" />
+    <Compile Include="Synchronization\EntityLockFailed.cs" />
+    <Compile Include="Synchronization\EntityMutexLockProvider.cs" />
+    <Compile Include="Synchronization\IEntityLockProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
