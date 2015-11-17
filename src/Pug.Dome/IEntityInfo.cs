@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface IEntityInfo<tIdentifier> : Identifiable<tIdentifier>
+	public interface IEntityInfo<tIdentifier, tEntityVersionUser> : Identifiable<tIdentifier>, IRegisteredInfo<tEntityVersionUser>
 	{
 	}
 

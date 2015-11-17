@@ -10,20 +10,20 @@ using Pug.Application.Security;
 
 namespace Pug.Dome
 {
-	public abstract class Entity<DS, INF, I> : IEntity<INF, I> 
-		where DS : class, IApplicationDataSession
-		where INF : IEntityInfo<I>
+	public abstract class Entity<TDataStore, TInfo, TIdentifier, TEntityVersionUser> : IEntity<TInfo, TIdentifier, TEntityVersionUser> 
+		where TDataStore : class, IApplicationDataSession
+		where TInfo : IEntityInfo<TIdentifier, TEntityVersionUser>
 	{
-		readonly IApplicationData<DS> dataProviderFactory;
+		readonly IApplicationData<TDataStore> dataProviderFactory;
 		readonly ISecurityManager securityManager;
 
-		protected Entity(INF info, IApplicationData<DS> dataProviderFactory, ISecurityManager securityManager)
+		protected Entity(TInfo info, IApplicationData<TDataStore> dataProviderFactory, ISecurityManager securityManager)
 		{
 			this.dataProviderFactory = dataProviderFactory;
 			this.securityManager = securityManager;
 		}
 
-		protected IApplicationData<DS> DataProviderFactory
+		protected IApplicationData<TDataStore> DataProviderFactory
 		{
 			get
 			{
@@ -31,9 +31,9 @@ namespace Pug.Dome
 			}
 		}
 
-		protected void dbx(Action<DS> action, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required, Action<Exception> onError = null, Action<Exception> errorHandler = null, Action onFinished = null)
+		protected void dbx(Action<TDataStore> action, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required, Action<Exception> onError = null, Action<Exception> errorHandler = null, Action onFinished = null)
 		{
-			DS dataSession = default(DS);
+			TDataStore dataSession = default(TDataStore);
 
 			try
 			{
@@ -72,7 +72,7 @@ namespace Pug.Dome
 			}
 		}
 
-		public virtual INF Info { get; protected set; }
+		public virtual TInfo Info { get; protected set; }
 
 		public abstract void Refresh();
 	}

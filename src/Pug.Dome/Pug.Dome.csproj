@@ -67,14 +67,10 @@
     <Compile Include="INamed.cs" />
     <Compile Include="INamedEntityInfo.cs" />
     <Compile Include="IRegisteredInfo.cs" />
-    <Compile Include="ITransactionalEntityInfo.cs" />
     <Compile Include="IUpdatableEntity.cs" />
     <Compile Include="IUpdatableInfo.cs" />
     <Compile Include="Skeleton\NamedEntityInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skeleton\RegisteredEntity.cs" />
-    <Compile Include="Skeleton\RegisteredEntityInfo.cs" />
-    <Compile Include="Skeleton\TransactionalEntityInfo.cs" />
     <Compile Include="Synchronization\EntityLockFailed.cs" />
     <Compile Include="Synchronization\EntityMutexLockProvider.cs" />
     <Compile Include="Synchronization\IEntityLockProvider.cs" />
