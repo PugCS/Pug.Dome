@@ -7,8 +7,8 @@ namespace Pug.Dome
 {
 	public abstract class NamedEntityInfo<TIdentifier, TName, TEntityVersionUser> : EntityInfo<TIdentifier, TEntityVersionUser>, INamedEntityInfo<TIdentifier, TName, TEntityVersionUser>
 	{
-		public NamedEntityInfo(TIdentifier identifier, TName name, TEntityVersionUser registrationUser, DateTime registrationTimestamp)
-			: base(identifier, registrationUser, registrationTimestamp)
+		public NamedEntityInfo(TIdentifier identifier, TName name, TEntityVersionUser registrationUser, DateTime registrationTimestamp, TEntityVersionUser createUser, DateTime createTimestamp)
+			: base(identifier, registrationUser, registrationTimestamp, createUser, createTimestamp)
 		{
 			this.Name = name;
 		}

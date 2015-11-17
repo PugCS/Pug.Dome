@@ -7,12 +7,16 @@ namespace Pug.Dome
 {
 	public abstract class EntityInfo<TIdentifier, TEntityVersionUser> : IEntityInfo<TIdentifier, TEntityVersionUser>
 	{
+		TEntityVersionUser createUser;
+		DateTime createTimestamp;
 		TEntityVersionUser registrationUser;
 		DateTime registrationTimestamp;
 
-		public EntityInfo(TIdentifier identifier, TEntityVersionUser registrationUser, DateTime registrationTimestamp)
+		public EntityInfo(TIdentifier identifier, TEntityVersionUser registrationUser, DateTime registrationTimestamp, TEntityVersionUser createUser, DateTime createTimestamp)
 		{
 			this.Identifier = identifier;
+			this.createUser = createUser;
+			this.createTimestamp = createTimestamp;
 			this.registrationUser = registrationUser;
 			this.registrationTimestamp = registrationTimestamp;
 		}
@@ -33,6 +37,22 @@ namespace Pug.Dome
 			{
 				return this.registrationUser;
 			}
+		}
+
+		public TEntityVersionUser CreateUser
+		{
+			get
+			{
+				return createUser;
+			}
+		}
+
+		public DateTime CreateTimestamp
+		{
+			get
+			{
+				return createTimestamp;
+            }
 		}
 	}
 }

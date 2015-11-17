@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICreatedInfo.cs" />
     <Compile Include="IEntityIdentifierAuthority.cs" />
+    <Compile Include="IModifiableInfo.cs" />
     <Compile Include="Skeleton\DescribedEntityAttributeInfo.cs" />
     <Compile Include="Skeleton\Entity.cs" />
     <Compile Include="Skeleton\EntityAttributeInfo.cs" />

@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface IRegisteredInfo<tRegistrationUser>
+	public interface IRegisteredInfo<out TEntityVersionUser> : ICreatedInfo<TEntityVersionUser>
 	{
 		DateTime RegistrationTimestamp
 		{
 			get;
 		}
 
-		tRegistrationUser RegistrationUser
+		TEntityVersionUser RegistrationUser
 		{
 			get;
 		}

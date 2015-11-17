@@ -9,14 +9,14 @@ namespace Pug.Dome
 	//{
 	//}
 
-	public interface IUpdatableInfo<tUpdateUser>
+	public interface IUpdatableInfo< out TEntityVersionUser>
 	{
 		DateTime LastUpdateTimestamp
 		{
 			get;
 		}
 
-		tUpdateUser LastUpdateUser
+		TEntityVersionUser LastUpdateUser
 		{
 			get;
 		}
