@@ -2,61 +2,79 @@ using System;
 
 namespace Pug.Dome
 {
-	public class EntityAttributeInfo : IEntityAttributeInfo
+	public class EntityAttributeInfo<TKey, TValue, TEntityVersionUser> : IEntityAttributeInfo<TKey, TValue, TEntityVersionUser>
 	{
-		string name, value, specificationUser, lastModificationUser;
-		DateTime specificationTimestamp, lastModificationTimestamp;
+		TKey name;
+		TValue value;
+		TEntityVersionUser registrationUser, createUser;
+		DateTime registrationTimestamp, createTimestamp;
 
-		public EntityAttributeInfo(string name, string value, DateTime specificationTimestamp, string specificationUser, DateTime lastModificationTimestamp, string lastModificationUser)
+		public EntityAttributeInfo(TKey name, TValue value, DateTime specificationTimestamp, TEntityVersionUser specificationUser, DateTime createTimestamp, TEntityVersionUser createUser)
 		{
 			this.name = name;
 			this.value = value;
-			this.specificationTimestamp = specificationTimestamp;
-			this.specificationUser = specificationUser;
-			this.lastModificationTimestamp = lastModificationTimestamp;
-			this.lastModificationUser = lastModificationUser;
+			this.registrationTimestamp = specificationTimestamp;
+			this.registrationUser = specificationUser;
+			this.createTimestamp = createTimestamp;
+			this.createUser = createUser;
 		}
 
-		public string Name
+		public TKey Name
 		{
 			get { return name; }
 		}
 
-		public string Value
+		public TValue Value
 		{
 			get { return value; }
 		}
 
-		public DateTime SpecificationTimestamp
+		public DateTime RegistrationTimestamp
 		{
 			get
 			{
-				return specificationTimestamp;
+				return registrationTimestamp;
 			}
 		}
 
-		public string SpecificationUser
+		public TEntityVersionUser RegistrationUser
 		{
 			get
 			{
-				return specificationUser;
+				return registrationUser;
 			}
 		}
 
-		public DateTime LastModificationTimestamp
+		public TEntityVersionUser CreateUser
 		{
 			get
 			{
-				return lastModificationTimestamp;
+				return createUser;
 			}
 		}
 
-		public string LastModificationUser
+		public DateTime CreateTimestamp
 		{
 			get
 			{
-				return lastModificationUser;
+				return createTimestamp;
 			}
 		}
+
+		//public DateTime LastModificationTimestamp
+		//{
+		//	get
+		//	{
+		//		return lastModificationTimestamp;
+		//	}
+		//}
+
+		//public string LastModificationUser
+		//{
+		//	get
+		//	{
+		//		return lastModificationUser;
+		//	}
+		//}
 	}
 }

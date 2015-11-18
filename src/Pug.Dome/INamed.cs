@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface INamed<N>
+	public interface INamed<out N>
 	{
 		N Name
 		{
