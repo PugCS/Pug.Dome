@@ -32,10 +32,10 @@ namespace Pug.Dome.Synchronization
 
 		IEntityIdentifierAuthority identifierAuthority;
 
-		Dictionary<string, LockInfo> locks;
+		readonly Dictionary<string, LockInfo> locks;
 		Timer cleanupTimer;
 
-		object disposeSync = new object();
+		readonly object disposeSync = new object();
 
 		public EntityMutexLockProvider(string identifier, Scope scope, IEntityIdentifierAuthority identifierAuthority)
 		{
@@ -51,46 +51,51 @@ namespace Pug.Dome.Synchronization
 
 		void Cleanup(object state)
 		{
-			string[] locks = this.locks.Keys.ToArray();
+			string[] lockKeys = locks.Keys.ToArray();
 
 			LockInfo lockInfo;
 
-			foreach (string identifier in locks)
+			foreach (string key in lockKeys)
 			{
-				if (this.locks.TryGetValue(identifier, out lockInfo))
+				if (locks.TryGetValue(key, out lockInfo))
 					if (DateTime.Now.Subtract(lockInfo.TimeStamp).TotalSeconds >= 30)
 					{
 						lockInfo.Release();
 					}
 
-				this.locks.Remove(identifier);
+				locks.Remove(key);
 			}
 		}
 
-		string GetMutexIdentifier(string identfiier)
+		string GetMutexIdentifier(string entity)
 		{
 			StringBuilder mutexIdentifier = new StringBuilder(scopePrefix);
 			mutexIdentifier.Append(this.identifier);
 			mutexIdentifier.Append(".");
-			mutexIdentifier.Append(identifier);
+			mutexIdentifier.Append(entity);
 
 			return mutexIdentifier.ToString();
 		}
 
-		public string Lock(string identifier)
+		public string Lock(string entity)
 		{
-			return Lock(identifier, 0);
+			return Lock(entity, 0);
 		}
 
-		public string Lock(string identifier, int timeout)
+		public string Lock(string entity, int timeout)
 		{
 			bool locked = false;
 			string mutexIdentifier;
 
-			Mutex mutex = new Mutex(true, mutexIdentifier = GetMutexIdentifier(identifier), out locked);
+			Mutex mutex = new Mutex(true, mutexIdentifier = GetMutexIdentifier(entity), out locked);
 
+			// wait for mutex if not owned
 			if (!locked)
 				locked = mutex.WaitOne(timeout);
+
+			// return null if unable to lock mutex within specified time-out
+			if (!locked)
+				return null;
 
 			string token = string.Empty;
 
@@ -103,14 +108,14 @@ namespace Pug.Dome.Synchronization
 			return token;
 		}
 
-		public void Release(string identifier)
+		public void Release(string @lock)
 		{
 			LockInfo lockInfo;
 
-			if( locks.TryGetValue(identifier, out lockInfo))
+			if( locks.TryGetValue(@lock, out lockInfo))
 			{
 				lockInfo.Release();
-				locks.Remove(identifier);
+				locks.Remove(@lock);
 			}
 		}
 
@@ -128,9 +133,9 @@ namespace Pug.Dome.Synchronization
 
 			LockInfo lockInfo;
 
-			foreach (string identifier in this.locks.Keys)
+			foreach (string key in this.locks.Keys)
 			{
-				if (this.locks.TryGetValue(identifier, out lockInfo))
+				if (this.locks.TryGetValue(key, out lockInfo))
 				{
 					lockInfo.Release();
 				}

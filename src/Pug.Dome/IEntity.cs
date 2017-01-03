@@ -2,9 +2,8 @@
 
 namespace Pug.Dome
 {
-
-	public interface IEntity<TInfo, TIdentifier, TEntityVersionUser> 
-		where TInfo : IEntityInfo<TIdentifier, TEntityVersionUser>
+	public interface IEntity<TInfo, TIdentifier> 
+		where TInfo : IEntityInfo<TIdentifier>
 	{
 		TInfo Info { get; }
 	}

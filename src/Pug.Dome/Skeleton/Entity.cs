@@ -10,18 +10,30 @@ using Pug.Application.Security;
 
 namespace Pug.Dome
 {
-	public abstract class Entity<TDataStore, TInfo, TIdentifier, TEntityVersionUser> : IEntity<TInfo, TIdentifier, TEntityVersionUser> 
+	public abstract class Entity<TDataStore, TInfo, TIdentifier/*, TEntityVersionUser*/> : IEntity<TInfo, TIdentifier/*, TEntityVersionUser*/> 
 		where TDataStore : class, IApplicationDataSession
-		where TInfo : IEntityInfo<TIdentifier, TEntityVersionUser>
+		where TInfo : IEntityInfo<TIdentifier/*, TEntityVersionUser*/>
 	{
+		readonly TIdentifier identifier;
+
 		readonly IApplicationData<TDataStore> dataProviderFactory;
 		readonly ISecurityManager securityManager;
-
-		protected Entity(TInfo info, IApplicationData<TDataStore> dataProviderFactory, ISecurityManager securityManager)
+		
+		protected Entity(TIdentifier identifier, IApplicationData<TDataStore> dataProviderFactory, ISecurityManager securityManager)
 		{
+			this.identifier = identifier;
 			this.dataProviderFactory = dataProviderFactory;
 			this.securityManager = securityManager;
 		}
+
+		protected TIdentifier Identifier
+		{
+			get
+			{
+				return this.identifier;
+			}
+		}
+
 
 		protected IApplicationData<TDataStore> DataProviderFactory
 		{
@@ -31,38 +43,38 @@ namespace Pug.Dome
 			}
 		}
 
-		protected void dbx(Action<TDataStore> action, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required, Action<Exception> onError = null, Action<Exception> errorHandler = null, Action onFinished = null)
-		{
-			TDataStore dataSession = default(TDataStore);
+		//protected void dbx(Action<TDataStore> action, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required, Action<Exception> onError = null, Action<Exception> errorHandler = null, Action onFinished = null)
+		//{
+		//	TDataStore dataSession = default(TDataStore);
 
-			try
-			{
-				dataSession = DataProviderFactory.GetSession();
+		//	try
+		//	{
+		//		dataSession = DataProviderFactory.GetSession();
 
-				using (new TransactionScope(transactionScopeOption))
-				{
-					action(dataSession);
-				}
-			}
-			catch (Exception exception)
-			{
-				if (onError != null)
-					onError(exception);
+		//		using (new TransactionScope(transactionScopeOption))
+		//		{
+		//			action(dataSession);
+		//		}
+		//	}
+		//	catch (Exception exception)
+		//	{
+		//		if (onError != null)
+		//			onError(exception);
 
-				if (errorHandler == null)
-					throw;
+		//		if (errorHandler == null)
+		//			throw;
 
-				errorHandler(exception);
-			}
-			finally
-			{
-				if (dataSession != null)
-					dataSession.Dispose();
+		//		errorHandler(exception);
+		//	}
+		//	finally
+		//	{
+		//		if (dataSession != null)
+		//			dataSession.Dispose();
 
-				if (onFinished != null)
-					onFinished();
-			}
-		}
+		//		if (onFinished != null)
+		//			onFinished();
+		//	}
+		//}
 
 		protected ISecurityManager SecurityManager
 		{

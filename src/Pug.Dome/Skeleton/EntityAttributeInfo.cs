@@ -2,21 +2,23 @@ using System;
 
 namespace Pug.Dome
 {
-	public class EntityAttributeInfo<TKey, TValue, TEntityVersionUser> : IEntityAttributeInfo<TKey, TValue, TEntityVersionUser>
+	public class EntityAttributeInfo<TKey, TValue/*, TEntityVersionUser*/> : IEntityAttributeInfo<TKey, TValue/*, TEntityVersionUser*/>
 	{
 		TKey name;
 		TValue value;
-		TEntityVersionUser registrationUser, createUser;
-		DateTime registrationTimestamp, createTimestamp;
+		readonly bool isPublic;
+		//TEntityVersionUser registrationUser, createUser;
+		//readonly DateTime registrationTimestamp, createTimestamp;
 
-		public EntityAttributeInfo(TKey name, TValue value, DateTime specificationTimestamp, TEntityVersionUser specificationUser, DateTime createTimestamp, TEntityVersionUser createUser)
+		public EntityAttributeInfo(TKey name, TValue value, bool isPublic/*, DateTime specificationTimestamp, TEntityVersionUser specificationUser, DateTime createTimestamp, TEntityVersionUser createUser*/)
 		{
 			this.name = name;
 			this.value = value;
-			this.registrationTimestamp = specificationTimestamp;
-			this.registrationUser = specificationUser;
-			this.createTimestamp = createTimestamp;
-			this.createUser = createUser;
+			this.isPublic = isPublic;
+			//this.registrationTimestamp = specificationTimestamp;
+			//this.registrationUser = specificationUser;
+			//this.createTimestamp = createTimestamp;
+			//this.createUser = createUser;
 		}
 
 		public TKey Name
@@ -29,37 +31,45 @@ namespace Pug.Dome
 			get { return value; }
 		}
 
-		public DateTime RegistrationTimestamp
+		public bool IsPublic
 		{
-			get
+			get 
 			{
-				return registrationTimestamp;
+				return this.isPublic;
 			}
 		}
 
-		public TEntityVersionUser RegistrationUser
-		{
-			get
-			{
-				return registrationUser;
-			}
-		}
+		//public DateTime RegistrationTimestamp
+		//{
+		//	get
+		//	{
+		//		return registrationTimestamp;
+		//	}
+		//}
 
-		public TEntityVersionUser CreateUser
-		{
-			get
-			{
-				return createUser;
-			}
-		}
+		//public TEntityVersionUser RegistrationUser
+		//{
+		//	get
+		//	{
+		//		return registrationUser;
+		//	}
+		//}
 
-		public DateTime CreateTimestamp
-		{
-			get
-			{
-				return createTimestamp;
-			}
-		}
+		//public TEntityVersionUser CreateUser
+		//{
+		//	get
+		//	{
+		//		return createUser;
+		//	}
+		//}
+
+		//public DateTime CreateTimestamp
+		//{
+		//	get
+		//	{
+		//		return createTimestamp;
+		//	}
+		//}
 
 		//public DateTime LastModificationTimestamp
 		//{

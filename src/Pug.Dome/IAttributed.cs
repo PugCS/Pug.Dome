@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public interface IAttributed<K, TAttributeInfo, V, TEntityVersionUser> where TAttributeInfo : IEntityAttributeInfo<K, V, TEntityVersionUser>
+	public interface IAttributed<K, TAttributeInfo, V/*, TEntityVersionUser*/> where TAttributeInfo : IEntityAttributeInfo<K, V/*, TEntityVersionUser*/>
 	{
 		V this[K key]
 		{

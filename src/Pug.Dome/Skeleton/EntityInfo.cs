@@ -5,54 +5,59 @@ using System.Text;
 
 namespace Pug.Dome
 {
-	public abstract class EntityInfo<TIdentifier, TEntityVersionUser> : IEntityInfo<TIdentifier, TEntityVersionUser>
+	public abstract class EntityInfo<TIdentifier/*, TEntityVersionUser*/> : IEntityInfo<TIdentifier/*, TEntityVersionUser*/>
 	{
-		TEntityVersionUser createUser;
-		DateTime createTimestamp;
-		TEntityVersionUser registrationUser;
-		DateTime registrationTimestamp;
+		TIdentifier identifier;
+		//TEntityVersionUser createUser;
+		//readonly DateTime createTimestamp;
+		//TEntityVersionUser registrationUser;
+		//readonly DateTime registrationTimestamp;
 
-		public EntityInfo(TIdentifier identifier, TEntityVersionUser registrationUser, DateTime registrationTimestamp, TEntityVersionUser createUser, DateTime createTimestamp)
+		protected EntityInfo(TIdentifier identifier/*, TEntityVersionUser registrationUser, DateTime registrationTimestamp, TEntityVersionUser createUser, DateTime createTimestamp */)
 		{
-			this.Identifier = identifier;
-			this.createUser = createUser;
-			this.createTimestamp = createTimestamp;
-			this.registrationUser = registrationUser;
-			this.registrationTimestamp = registrationTimestamp;
+			this.identifier = identifier;
+			//this.createUser = createUser;
+			//this.createTimestamp = createTimestamp;
+			//this.registrationUser = registrationUser;
+			//this.registrationTimestamp = registrationTimestamp;
 		}
 
-		public virtual TIdentifier Identifier { get; protected set; }
-
-		public DateTime RegistrationTimestamp
-		{
-			get
-			{
-				return this.registrationTimestamp;
-			}
+		public TIdentifier Identifier
+		{ 
+			get { return this.identifier; }
+			protected set { this.identifier = value; }
 		}
 
-		public TEntityVersionUser RegistrationUser
-		{
-			get
-			{
-				return this.registrationUser;
-			}
-		}
+		//public DateTime RegistrationTimestamp
+		//{
+		//	get
+		//	{
+		//		return this.registrationTimestamp;
+		//	}
+		//}
 
-		public TEntityVersionUser CreateUser
-		{
-			get
-			{
-				return createUser;
-			}
-		}
+		//public TEntityVersionUser RegistrationUser
+		//{
+		//	get
+		//	{
+		//		return this.registrationUser;
+		//	}
+		//}
 
-		public DateTime CreateTimestamp
-		{
-			get
-			{
-				return createTimestamp;
-            }
-		}
+		//public TEntityVersionUser CreateUser
+		//{
+		//	get
+		//	{
+		//		return createUser;
+		//	}
+		//}
+
+		//public DateTime CreateTimestamp
+		//{
+		//	get
+		//	{
+		//		return createTimestamp;
+  //          }
+		//}
 	}
 }

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Pug.Dome.IEntityPublicInfo&lt;TIdentifier&gt;" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEntityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.IEntityInfo&lt;TIdentifier, TEntityVersionUser&gt;" Collapsed="true">
+    <Position X="8.75" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEntityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.Identifiable&lt;I&gt;" Collapsed="true">
+    <Position X="11" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Identifiable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.INamed&lt;N&gt;" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INamed.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.INamedEntityPublicInfo&lt;TIdentifier, TName&gt;" Collapsed="true">
+    <Position X="13.75" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INamedEntityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.INamedEntityInfo&lt;TIdentifier, TName, TEntityVersionUser&gt;" Collapsed="true">
+    <Position X="10.25" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INamedEntityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.IRegisteredInfo&lt;TEntityVersionUser&gt;" Collapsed="true">
+    <Position X="6.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRegisteredInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.IUpdatableEntity&lt;TInfo, TIdentifier, TEntityVersionUser&gt;" Collapsed="true">
+    <Position X="15.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IUpdatableEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.IUpdatableInfo&lt;TEntityVersionUser&gt;" Collapsed="true">
+    <Position X="13.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>IUpdatableInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Pug.Dome.IModifiableInfo&lt;TEntityVersionUser&gt;" Collapsed="true">
+    <Position X="13.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>IModifiableInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
