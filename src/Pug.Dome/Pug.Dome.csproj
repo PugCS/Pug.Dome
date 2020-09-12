@@ -1,92 +1,54 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29408A68-4BEC-45DA-BAAB-D80CFEEA9488}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Description>Domain entity framework library.</Description>
     <RootNamespace>Pug.Dome</RootNamespace>
+    <PackageId>Pug.Dome</PackageId>
+    <AssemblyTitle>Pug.Dome</AssemblyTitle>
     <AssemblyName>Pug.Dome</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <PackageTags>Pug Domain Entity Framework</PackageTags>
+    <Authors>Andrian</Authors>
+    <Version>1.1.2</Version>
+    <FileVersion>1.1.2</FileVersion>
+    <AssemblyVersion>1.1.2</AssemblyVersion>
+    <PackageVersion>1.1.2</PackageVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
+    <License>Apache2.0</License>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Removed unnecessary dependencies.</PackageReleaseNotes>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Pug.Application.Data, Version=2.0.5790.33121, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\Debug\Pug.Application.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Pug.Application.Security, Version=1.0.5790.33122, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\Debug\Pug.Application.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Pug.Core, Version=1.0.5102.42262, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Dependencies\Debug\Pug.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Snowflake">
-      <HintPath>..\..\Dependencies\Debug\Snowflake.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    
+    <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
+  
   <ItemGroup>
-    <Compile Include="IAttributed.cs" />
-    <Compile Include="ICreatedInfo.cs" />
-    <Compile Include="Identification\IEntityIdentifierAuthority.cs" />
-    <Compile Include="IModifiableInfo.cs" />
-    <Compile Include="Skeleton\DescribedEntityAttributeInfo.cs" />
-    <Compile Include="Skeleton\Entity.cs" />
-    <Compile Include="Skeleton\EntityAttributeInfo.cs" />
-    <Compile Include="Skeleton\EntityInfo.cs" />
-    <Compile Include="Identifiable.cs" />
-    <Compile Include="IEntity.cs" />
-    <Compile Include="IEntityAttributeInfo.cs" />
-    <Compile Include="IEntityInfo.cs" />
-    <Compile Include="IDescribedEntityAttributeInfo.cs" />
-    <Compile Include="INamed.cs" />
-    <Compile Include="INamedEntityInfo.cs" />
-    <Compile Include="IRegisteredInfo.cs" />
-    <Compile Include="IUpdatableEntity.cs" />
-    <Compile Include="IUpdatableInfo.cs" />
-    <Compile Include="Skeleton\NamedEntityInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Synchronization\EntityLockFailed.cs" />
-    <Compile Include="Synchronization\EntityMutexLockProvider.cs" />
-    <Compile Include="Synchronization\IEntityLockProvider.cs" />
+    <Compile Remove="IModifiableEntity.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetDir)*.*" "$(ProjectDir)..\..\Output\$(ConfigurationName)\"</PostBuildEvent>
+  
+  <ItemGroup>
+    <PackageReference Include="Pug.Application.Data">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Pug.Application.Data.Common">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Pug.Application.Security" Version="1.1.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Pug.Effable\Pug.Effable.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  
+  <Target Name="PrecompileScript" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " />
+  <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

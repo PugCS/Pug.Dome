@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Title>Pug.Effable</Title>
+        <Authors>Andrian</Authors>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageTags>Pug Domain Entity Framework Library</PackageTags>
+        <Version>1.0.9</Version>
+        <FileVersion>1.0.9</FileVersion>
+        <AssemblyVersion>1.0.9</AssemblyVersion>
+	    <PackageVersion>1.0.9</PackageVersion>
+	    <!--        <PackageLicenseUrl>https://licenses.nuget.org/Apache-2.0+</PackageLicenseUrl>-->
+	    <License>Apache2.0</License>
+	    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	    <TargetFrameworks>netstandard1.1; netstandard1.3; netstandard2.0;</TargetFrameworks>
+        <PackageReleaseNotes>
+v1.0.9
+    - Added entity versioning basic models
+    - Removed .NET Framework 3.5 support
+	        
+v1.0.8
+    - Reinstate .NET Framework 3.5 support
+	        
+v1.0.7
+    - Add support for .netstandard 1.1
+	        
+v1.0.6
+    - Added default constructor to EntityAttributeInfo, DescribedEntityAttributeInfo, and EntityInfo
+	        
+v1.0.5
+    - Fixed incorrect identifiers
+            
+v1.0.4
+	- Reinstate .NET Framework 3.5 support
+            
+v1.0.3
+	- Converted registration, update, and modification peroperty of traits to property
+	- Renamed reigstraiton, update, and modification info classes
+	- Removed creatable trait
+		</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\Pug.Effable.xml</DocumentationFile>
+    </PropertyGroup>
+</Project>

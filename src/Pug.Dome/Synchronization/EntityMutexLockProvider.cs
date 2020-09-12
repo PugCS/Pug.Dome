@@ -15,7 +15,7 @@ namespace Pug.Dome.Synchronization
 			Global
 		}
 
-		struct LockInfo
+		class LockInfo
 		{
 			public Mutex Lock;
 			public DateTime TimeStamp;
@@ -23,7 +23,7 @@ namespace Pug.Dome.Synchronization
 			public void Release()
 			{
 				Lock.ReleaseMutex();
-				Lock.Close();
+				Lock.Dispose();
 			}
 		}
 
