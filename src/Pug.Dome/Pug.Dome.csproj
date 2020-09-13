@@ -20,6 +20,8 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <TargetFrameworks>netstandard1.3;netstandard2.0;</TargetFrameworks>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/PugCS/Pug.Dome.git</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     
