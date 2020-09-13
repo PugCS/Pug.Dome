@@ -35,6 +35,6 @@ jobs:
         run: dotnet pack --nologo --configuration release ${{env.EffableProject}}
 
       - name: Publish Pug.Dome NuGet package to GPR
-        run: dotnet nuget push ${{env.DomeProject}}/bin/Release/*.nupkg --skip-duplicate
+        run: dotnet nuget push ${{env.DomeProject}}/bin/release/*.nupkg --skip-duplicate
       - name: Publish Pug.Effable NuGet package to GPR
-        run: dotnet nuget push ${{env.EffableProject}}/bin/Release/*.nupkg --skip-duplicate
+        run: dotnet nuget push ${{env.EffableProject}}/bin/release/*.nupkg --skip-duplicater
