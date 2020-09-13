@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <Description>Domain entity framework library.</Description>
+    <RootNamespace>Pug.Dome</RootNamespace>
+    <PackageId>Pug.Dome</PackageId>
+    <AssemblyTitle>Pug.Dome</AssemblyTitle>
+    <AssemblyName>Pug.Dome</AssemblyName>
+    <PackageTags>Pug Domain Entity Framework</PackageTags>
+    <Authors>Andrian</Authors>
+    <Version>1.1.2</Version>
+    <FileVersion>1.1.2</FileVersion>
+    <AssemblyVersion>1.1.2</AssemblyVersion>
+    <PackageVersion>1.1.2</PackageVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
+    <License>Apache2.0</License>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Removed unnecessary dependencies.</PackageReleaseNotes>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;</TargetFrameworks>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/PugCS/Pug.Dome.git</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    
+    <EmbeddedResource Include="**\*.resx" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="IModifiableEntity.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Pug.Application.Data">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Pug.Application.Data.Common">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Pug.Application.Security" Version="1.1.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Pug.Effable\Pug.Effable.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+  
+  <Target Name="PrecompileScript" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " />
+  <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+  </Target>
+</Project>
