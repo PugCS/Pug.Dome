@@ -4,8 +4,10 @@ on:
       - master
 
 env:
-  DomeProject: src/Pug.Dome/Pug.Dome.csproj
-  EffableProject: src/Pug.Effable/Pug.Effable.csproj
+  DomeProjectPath: src/Pug.Dome
+  EffableProjectPath: src/Pug.Effable
+  DomeProject: Pug.Dome.csproj
+  EffableProject: Pug.Effable.csproj
 
 jobs:
   build:
@@ -24,17 +26,17 @@ jobs:
       
       # Build, pack, and publish Pug.Dome NuGet package
       - name: Build Pug.Dome project
-        run: dotnet build --nologo --configuration release ${{env.DomeProject}}
+        run: dotnet build --nologo --configuration release ${{env.DomeProjectPath}}/${{env.DomeProject}}
       # Build, pack, and publish Pug.Effable NuGet package
       - name: Build Pug.Effable project
-        run: dotnet build --nologo --configuration release ${{env.EffableProject}}
+        run: dotnet build --nologo --configuration release ${{env.EffableProjectPath}}/${{env.EffableProject}}
         
       - name: Create Pug.Dome NuGet package
-        run: dotnet pack --nologo --configuration release ${{env.DomeProject}}
+        run: dotnet pack --nologo --configuration release ${{env.DomeProjectPath}}/${{env.DomeProject}}
       - name: Create Pug.Effable NuGet package
-        run: dotnet pack --nologo --configuration release ${{env.EffableProject}}
+        run: dotnet pack --nologo --configuration release ${{env.EffableProjectPath}}/${{env.EffableProject}}
 
       - name: Publish Pug.Dome NuGet package to GPR
-        run: dotnet nuget push ${{env.DomeProject}}/bin/release/*.nupkg --skip-duplicate
+        run: dotnet nuget push ${{env.DomeProjectPath}}/bin/release/*.nupkg --skip-duplicate
       - name: Publish Pug.Effable NuGet package to GPR
-        run: dotnet nuget push ${{env.EffableProject}}/bin/release/*.nupkg --skip-duplicater
+        run: dotnet nuget push ${{env.EffableProjectPath}}/bin/release/*.nupkg --skip-duplicate
