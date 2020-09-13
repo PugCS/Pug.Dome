@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Title>Pug.Effable</Title>
         <Authors>Andrian</Authors>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageTags>Pug Domain Entity Framework Library</PackageTags>
         <Version>1.0.9</Version>
         <FileVersion>1.0.9</FileVersion>
