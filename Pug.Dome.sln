@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pug.Dome", "Pug.Dome\Pug.Dome.csproj", "{3774FDCE-5D34-473F-8AD8-1ED6B88F0051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pug.Dome", "src\Pug.Dome\Pug.Dome.csproj", "{3774FDCE-5D34-473F-8AD8-1ED6B88F0051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pug.Effable", "Pug.Effable\Pug.Effable.csproj", "{F3601930-EDD4-48E6-8BF1-29C70B592C7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pug.Effable", "src\Pug.Effable\Pug.Effable.csproj", "{F3601930-EDD4-48E6-8BF1-29C70B592C7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
