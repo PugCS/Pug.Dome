@@ -4,8 +4,8 @@ on:
       - master
 
 env:
-  DomeProject: src/pug.dome/pug.dome.csproj
-  EffableProject: src/pug.effable/pug.effable.csproj
+  DomeProject: src/Pug.Dome/Pug.Dome.csproj
+  EffableProject: src/Pug.Effable/Pug.Effable.csproj
 
 jobs:
   build:
@@ -25,46 +25,16 @@ jobs:
       # Build, pack, and publish Pug.Dome NuGet package
       - name: Build Pug.Dome project
         run: dotnet build --nologo --configuration release ${{env.DomeProject}}
-      - name: Create Pug.Dome NuGet package
-        run: dotnet pack --nologo --configuration release ${{env.DomeProject}}
-#      - name: Publish Pug.Dome NuGet package to GPR
-#        run: dotnet nuget push ${{env.DomeProject}}/bin/Release/*.nupkg --skip-duplicate
-#      
       # Build, pack, and publish Pug.Effable NuGet package
       - name: Build Pug.Effable project
         run: dotnet build --nologo --configuration release ${{env.EffableProject}}
+        
+      - name: Create Pug.Dome NuGet package
+        run: dotnet pack --nologo --configuration release ${{env.DomeProject}}
       - name: Create Pug.Effable NuGet package
         run: dotnet pack --nologo --configuration release ${{env.EffableProject}}
-#      - name: Publish Pug.Effable NuGet package to GPR
-#        run: dotnet nuget push ${{env.EffableProject}}/bin/Release/*.nupkg --skip-duplicate
-#        
-#  package:
-#    name: Create NuGet Packages
-#    runs-on: ubuntu-latest
-#    needs: build
-#    steps:
-#     - uses: actions/checkout@v2
-#    
-#     # Authenticates packages to push to GPR
-#     - uses: actions/setup-dotnet@v1
-#       with:
-#         dotnet-version: '3.1.x' # SDK Version to use.
-#         source-url: https://nuget.pkg.github.com/NDWX/index.json
-#       env:
-#         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-#    
-#     # Build, pack, and publish Pug.Dome NuGet package
-#     - name: Build Pug.Dome project
-#       run: dotnet build --nologo --configuration release ${{env.DomeProject}}
-#     - name: Create Pug.Dome NuGet package
-#       run: dotnet pack --nologo --configuration release ${{env.DomeProject}}
-#     - name: Publish Pug.Dome NuGet package to GPR
-#       run: dotnet nuget push ${{env.DomeProject}}/bin/Release/*.nupkg --skip-duplicate
-#    
-#     # Build, pack, and publish Pug.Effable NuGet package
-#     - name: Build Pug.Effable project
-#       run: dotnet build --nologo --configuration release ${{env.EffableProject}}
-#     - name: Create Pug.Effable NuGet package
-#       run: dotnet pack --nologo --configuration release ${{env.EffableProject}}
-#     - name: Publish Pug.Effable NuGet package to GPR
-#       run: dotnet nuget push ${{env.EffableProject}}/bin/Release/*.nupkg --skip-duplicate
+
+      - name: Publish Pug.Dome NuGet package to GPR
+        run: dotnet nuget push ${{env.DomeProject}}/bin/Release/*.nupkg --skip-duplicate
+      - name: Publish Pug.Effable NuGet package to GPR
+        run: dotnet nuget push ${{env.EffableProject}}/bin/Release/*.nupkg --skip-duplicate
