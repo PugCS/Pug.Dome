@@ -4,8 +4,8 @@ on:
       - develop
 
 env:
-  DomeProject: src/pug.dome/pug.dome.csproj
-  EffableProject: src/pug.effable/pug.effable.csproj
+  DomeProject: src/Pug.Dome/Pug.Dome.csproj
+  EffableProject: src/Pug.Effable/Pug.Effable.csproj
 
 jobs:
   build:
@@ -24,16 +24,16 @@ jobs:
       
       # Build, pack, and publish Pug.Dome NuGet package
       - name: Build Pug.Dome project
-        run: dotnet build ${{env.DomeProject}}
+        run: dotnet build --nologo --configuration debug ${{env.DomeProject}}
       - name: Create Pug.Dome NuGet package
-        run: dotnet pack --configuration Release ${{env.DomeProject}}
+        run: dotnet pack --nologo --configuration release ${{env.DomeProject}}
     #  - name: Publish Pug.Dome NuGet package to GPR
     #    run: dotnet nuget push ${{env.DomeProject}}/bin/Release/*.nupkg --skip-duplicate
       
       # Build, pack, and publish Pug.Effable NuGet package
       - name: Build Pug.Effable project
-        run: dotnet build ${{env.EffableProject}}
+        run: dotnet build --nologo --configuration debug ${{env.EffableProject}}
       - name: Create Pug.Effable NuGet package
-        run: dotnet pack --configuration Release ${{env.EffableProject}}
+        run: dotnet pack --nologo --configuration release ${{env.EffableProject}}
     #  - name: Publish Pug.Effable NuGet package to GPR
     #    run: dotnet nuget push ${{env.EffableProject}}/bin/Release/*.nupkg --skip-duplicate
