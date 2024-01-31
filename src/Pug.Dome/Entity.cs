@@ -7,27 +7,26 @@ using Pug.Effable;
 
 namespace Pug.Dome
 {
-	public abstract class Entity<TDataStore, TInfo, TIdentifier/*, TEntityVersionUser*/> : IEntity<TInfo, TIdentifier/*, TEntityVersionUser*/> 
+	public abstract class Entity<TDataStore, TIdentifier> : IEntity<TIdentifier> 
 		where TDataStore : class, IApplicationDataSession
-		where TInfo : IEntityInfo<TIdentifier/*, TEntityVersionUser*/>
 	{
-		readonly TIdentifier identifier;
+		private readonly TIdentifier _identifier;
 
-		readonly IApplicationData<TDataStore> dataProviderFactory;
-		readonly ISecurityManager securityManager;
+		private readonly IApplicationData<TDataStore> _dataProviderFactory;
+		private readonly ISecurityManager _securityManager;
 		
 		protected Entity(TIdentifier identifier, IApplicationData<TDataStore> dataProviderFactory, ISecurityManager securityManager)
 		{
-			this.identifier = identifier;
-			this.dataProviderFactory = dataProviderFactory;
-			this.securityManager = securityManager;
+			_identifier = identifier;
+			_dataProviderFactory = dataProviderFactory;
+			_securityManager = securityManager;
 		}
 
 		public TIdentifier Identifier
 		{
 			get
 			{
-				return this.identifier;
+				return _identifier;
 			}
 		}
 
@@ -36,7 +35,7 @@ namespace Pug.Dome
 		{
 			get
 			{
-				return dataProviderFactory;
+				return _dataProviderFactory;
 			}
 		}
 
@@ -44,21 +43,21 @@ namespace Pug.Dome
 		{
 			get
 			{
-				return securityManager;
+				return _securityManager;
 			}
         }
         protected IUser User => SecurityManager.CurrentUser;
-
-        public abstract TInfo GetInfo();
 	}
+	
+	public abstract class Entity<TDataStore, TInfo, TIdentifier> : Entity<TDataStore, TIdentifier>, IEntity<TInfo, TIdentifier> 
+		where TDataStore : class, IApplicationDataSession
+		where TInfo : IEntityInfo<TIdentifier>
+	{
+		protected Entity(TIdentifier identifier, IApplicationData<TDataStore> dataProviderFactory, ISecurityManager securityManager)
+		 : base (identifier, dataProviderFactory, securityManager)
+		{
+		}
 
-	//public abstract class Entity<DS, INF> : Entity<DS, INF, string>
-	//	where DS : IApplicationDataSession
-	//	where INF : IEntityInfo<string>
-	//{
-	//	protected Entity(INF info, IApplicationData<DS> dataProviderFactory, ISecurityManager securityManager)
-	//		: base(info, dataProviderFactory, securityManager)
-	//	{
-	//	}
-	//}
+		public abstract TInfo GetInfo();
+	}
 }

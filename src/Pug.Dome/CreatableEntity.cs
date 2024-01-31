@@ -8,9 +8,9 @@ using Pug.Effable;
 namespace Pug.Dome
 {
     public abstract class CreatableEntity<TDataStore, TInfo, TIdentifier, TEntityVersionUser> 
-        : Entity<TDataStore, TInfo, TIdentifier/*, TEntityVersionUser*/>
+        : Entity<TDataStore, TInfo, TIdentifier>
         where TDataStore : class, IApplicationDataSession
-        where TInfo : IEntityInfo<TIdentifier/*, TEntityVersionUser*/>
+        where TInfo : IEntityInfo<TIdentifier>
     {
 
         protected CreatableEntity(TIdentifier identifier, IApplicationData<TDataStore> dataProviderFactory, ISecurityManager securityManager) 
@@ -18,6 +18,6 @@ namespace Pug.Dome
         {
         }
 
-        public abstract ICreationInfo<TEntityVersionUser> CreationInfo { get; }
+        public abstract ActionContext<TEntityVersionUser> Creation { get; }
     }
 }
