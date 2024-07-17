@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       # Authenticates packages to push to GPR
       - uses: actions/setup-dotnet@v3
         with:
@@ -21,14 +21,17 @@ jobs:
           source-url: https://nuget.pkg.github.com/PugCS/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      
+
       # Build, pack, and publish Pug.Dome NuGet package
       - name: Build Pug.Dome project
         run: dotnet build --nologo --configuration release ${{env.DomeProjectPath}}/${{env.DomeProject}}
       # Build, pack, and publish Pug.Effable NuGet package
-      
+
       - name: Create Pug.Dome NuGet package
         run: dotnet pack --nologo --configuration release ${{env.DomeProjectPath}}/${{env.DomeProject}}
 
       - name: Publish Pug.Dome NuGet package to GPR
         run: dotnet nuget push ${{env.DomeProjectPath}}/bin/release/*.nupkg --skip-duplicate
+
+      - name: Publish to Pug.Dome NuGet package to nuget.org
+        run: dotnet nuget push ${{env.DomeProjectPath}}/bin/release/*.nupkg --api-key ${{secrets.NUGET_APIKEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
