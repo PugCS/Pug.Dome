@@ -15,7 +15,7 @@ namespace Pug.Dome.Synchronization
 			Global
 		}
 
-		class LockInfo
+		private class LockInfo
 		{
 			public Mutex Lock;
 			public DateTime TimeStamp;
@@ -27,50 +27,50 @@ namespace Pug.Dome.Synchronization
 			}
 		}
 
-		string scopePrefix = @"Local\";
-		string identifier;
+		private string _scopePrefix = @"Local\";
+		private string _identifier;
 
-		IEntityIdentifierAuthority identifierAuthority;
+		private IEntityIdentifierAuthority _identifierAuthority;
 
-		readonly Dictionary<string, LockInfo> locks;
-		Timer cleanupTimer;
+		private readonly Dictionary<string, LockInfo> _locks;
+		private Timer _cleanupTimer;
 
-		readonly object disposeSync = new object();
+		private readonly object _disposeSync = new object();
 
 		public EntityMutexLockProvider(string identifier, Scope scope, IEntityIdentifierAuthority identifierAuthority)
 		{
-			this.identifier = identifier;
+			_identifier = identifier;
 
 			if (scope == Scope.Global)
-				scopePrefix = @"Global\";
+				_scopePrefix = @"Global\";
 
-			this.identifierAuthority = identifierAuthority;
-			locks = new Dictionary<string, LockInfo>();
-			cleanupTimer = new Timer(new TimerCallback(Cleanup), null, 5000, 5000);
+			_identifierAuthority = identifierAuthority;
+			_locks = new Dictionary<string, LockInfo>();
+			_cleanupTimer = new Timer(new TimerCallback(Cleanup), null, 5000, 5000);
 		}
 
-		void Cleanup(object state)
+		private void Cleanup(object state)
 		{
-			string[] lockKeys = locks.Keys.ToArray();
+			string[] lockKeys = _locks.Keys.ToArray();
 
 			LockInfo lockInfo;
 
 			foreach (string key in lockKeys)
 			{
-				if (locks.TryGetValue(key, out lockInfo))
+				if (_locks.TryGetValue(key, out lockInfo))
 					if (DateTime.Now.Subtract(lockInfo.TimeStamp).TotalSeconds >= 30)
 					{
 						lockInfo.Release();
 					}
 
-				locks.Remove(key);
+				_locks.Remove(key);
 			}
 		}
 
-		string GetMutexIdentifier(string entity)
+		private string GetMutexIdentifier(string entity)
 		{
-			StringBuilder mutexIdentifier = new StringBuilder(scopePrefix);
-			mutexIdentifier.Append(this.identifier);
+			StringBuilder mutexIdentifier = new StringBuilder(_scopePrefix);
+			mutexIdentifier.Append(_identifier);
 			mutexIdentifier.Append(".");
 			mutexIdentifier.Append(entity);
 
@@ -101,8 +101,8 @@ namespace Pug.Dome.Synchronization
 
 			if (locked)
 			{
-				token = identifierAuthority.GetIdentifier(string.Empty);
-				locks.Add(token, new LockInfo() { Lock = mutex, TimeStamp = DateTime.Now });
+				token = _identifierAuthority.GetIdentifier(string.Empty);
+				_locks.Add(token, new LockInfo() { Lock = mutex, TimeStamp = DateTime.Now });
 			}
 
 			return token;
@@ -112,30 +112,30 @@ namespace Pug.Dome.Synchronization
 		{
 			LockInfo lockInfo;
 
-			if( locks.TryGetValue(@lock, out lockInfo))
+			if( _locks.TryGetValue(@lock, out lockInfo))
 			{
 				lockInfo.Release();
-				locks.Remove(@lock);
+				_locks.Remove(@lock);
 			}
 		}
 
 		public void Dispose()
 		{
-			lock (disposeSync)
+			lock (_disposeSync)
 			{
-				if (cleanupTimer == null)
+				if (_cleanupTimer == null)
 					return;
 
-				cleanupTimer.Dispose();
+				_cleanupTimer.Dispose();
 
-				cleanupTimer = null;
+				_cleanupTimer = null;
 			}
 
 			LockInfo lockInfo;
 
-			foreach (string key in this.locks.Keys)
+			foreach (string key in _locks.Keys)
 			{
-				if (this.locks.TryGetValue(key, out lockInfo))
+				if (_locks.TryGetValue(key, out lockInfo))
 				{
 					lockInfo.Release();
 				}

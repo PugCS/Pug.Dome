@@ -7,15 +7,15 @@
     <AssemblyName>Pug.Dome</AssemblyName>
     <PackageTags>Pug Domain Entity Framework</PackageTags>
     <Authors>Andrian</Authors>
-    <Version>1.1.2</Version>
-    <FileVersion>1.1.2</FileVersion>
-    <AssemblyVersion>1.1.2</AssemblyVersion>
-    <PackageVersion>1.1.2</PackageVersion>
+    <Version>1.2.0</Version>
+    <FileVersion>1.2.0</FileVersion>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
     <License>Apache2.0</License>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Removed unnecessary dependencies.</PackageReleaseNotes>
+    <PackageReleaseNotes>Dependencies upgrade and code enhancements</PackageReleaseNotes>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -33,17 +33,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Pug.Application.Data">
-      <Version>1.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Pug.Application.Data.Common">
-      <Version>1.0.0</Version>
+      <Version>1.0.3</Version>
     </PackageReference>
     <PackageReference Include="Pug.Application.Security" Version="1.1.0" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Pug.Effable\Pug.Effable.csproj" />
+    <PackageReference Include="Pug.Effable" Version="2.0.6" />
   </ItemGroup>
   
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
